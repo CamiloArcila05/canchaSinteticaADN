@@ -23,9 +23,6 @@ dependencies {
 	compile "io.springfox:springfox-swagger-ui:2.9.2"
 	compile "io.springfox:springfox-swagger2:2.9.2"
 	testImplementation "junit:junit:4.12"
-	testImplementation project.ext.flywaytest
-	testImplementation project.ext.h2
-	testImplementation project.ext.springboottest
 }
 
 test {

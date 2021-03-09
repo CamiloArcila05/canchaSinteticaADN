@@ -44,7 +44,7 @@ pipeline {
     stage('Clean') {
       steps{
         echo "------------>Clean<------------"
-        sh 'gradle --b ./proyecto1/build.gradle clean compileJava'
+        sh './gradlew --b ./build.gradle clean'
       }
     }
  
