@@ -4,7 +4,6 @@ import com.co.canchasintetica.microservicio.infraestructura.persistencia.entidad
 
 import com.co.canchasintetica.microservicio.dominio.entidades.Reserva;
 import com.co.canchasintetica.microservicio.infraestructura.persistencia.entidades.ReservaEntity;
-import com.co.servicios.arrendamientos.infraestructura.persistencia.mapper.PagoMapper;
 
 
 public class ReservaMapper {

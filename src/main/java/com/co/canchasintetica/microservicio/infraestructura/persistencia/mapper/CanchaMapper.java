@@ -2,7 +2,6 @@ package com.co.canchasintetica.microservicio.infraestructura.persistencia.mapper
 
 import com.co.canchasintetica.microservicio.dominio.entidades.Cancha;
 import com.co.canchasintetica.microservicio.infraestructura.persistencia.entidades.CanchaEntity;
-import com.co.servicios.arrendamientos.infraestructura.persistencia.mapper.PagoMapper;
 
 
 public class CanchaMapper {
