@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -46,11 +47,10 @@ public class CrearCanchaServiceTest {
 		this.crearCanchaService = new CrearCanchaService(canchaRepository);
 
 		// act
-		String respuesta = this.crearCanchaService.craerCancha(cancha);
+		Cancha canchaCreada = this.crearCanchaService.craerCancha(cancha);
 
-		String msjEsperado = "La cancha: " + canchaRepository.crearCancha(cancha).getNombre() + " ha sido creada.";
 		// assert
-		assertEquals(msjEsperado, respuesta);
+		Assert.assertNotNull(canchaCreada);
 
 	}
 	
@@ -65,13 +65,7 @@ public class CrearCanchaServiceTest {
 			cancha.setNombre("");
 			when(this.canchaRepository.crearCancha(cancha)).thenReturn(cancha);
 			this.crearCanchaService = new CrearCanchaService(canchaRepository);
-
-			// act
-			String respuesta = this.crearCanchaService.craerCancha(cancha);
-
-			String msjEsperado = "La cancha: " + canchaRepository.crearCancha(cancha).getNombre() + " ha sido creada.";
-			// assert
-			assertEquals(msjEsperado, respuesta);
+		    this.crearCanchaService.craerCancha(cancha);
 			
 		} catch (Exception e) {
 			assertEquals(CAMPOS_VACIOS, e.getMessage());

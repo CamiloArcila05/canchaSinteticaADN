@@ -12,15 +12,15 @@ import com.co.canchasintetica.microservicio.infraestructura.persistencia.entidad
 
 public interface ReservaRepositoryJpa extends CrudRepository<ReservaEntity, Integer>{
 	
-	@Query("select r from ReservaEntity r")
+	@Query("select reserva from ReservaEntity reserva")
 	List<ReservaEntity> getAll();
 	
-	@Query("select r from ReservaEntity r where (select id from CanchaEntity where id = :id_cancha) = :id_cancha "
-			+ "and r.fecha = :fecha and r.hora = :hora and r.estado = :estado")
+	@Query("select reserva from ReservaEntity reserva where (select id from CanchaEntity where id = :canchaId) = :canchaId "
+			+ "and reserva.fecha = :fecha and reserva.hora = :hora and reserva.estado = :estado")
 	ReservaEntity getByIdCanchaAndFechaAndHoraAndEstado(
-			@Param("id_cancha") int id, @Param("fecha") LocalDate fecha, @Param("hora") String hora, @Param("estado") String estado);
+			@Param("canchaId") int canchaId, @Param("fecha") LocalDate fecha, @Param("hora") String hora, @Param("estado") String estado);
 	
-	@Query("select r from ReservaEntity r where r.id = :id")
+	@Query("select reserva from ReservaEntity reserva where reserva.id = :id")
 	ReservaEntity getById(@Param("id") int id);
 
 }

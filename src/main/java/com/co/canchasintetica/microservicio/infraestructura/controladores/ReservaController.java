@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+import com.co.canchasintetica.microservicio.aplicacion.comun.ComandoRespuesta;
 import com.co.canchasintetica.microservicio.aplicacion.handler.reserva.CancelarReservaHandler;
 import com.co.canchasintetica.microservicio.aplicacion.handler.reserva.CrearReservaHandler;
 import com.co.canchasintetica.microservicio.aplicacion.handler.reserva.FinalizarReservaHandler;
 import com.co.canchasintetica.microservicio.aplicacion.handler.reserva.ListarReservaHandler;
 import com.co.canchasintetica.microservicio.aplicacion.handler.reserva.ReservaEntity;
-import com.co.canchasintetica.microservicio.aplicacion.utils.UtilResponse;
 
 @RestController
 @RequestMapping("/reserva")
@@ -46,38 +46,20 @@ public class ReservaController {
 	
 	@ApiOperation("Registrar Reserva")
 	@PostMapping("/registrar-reserva")
-	public UtilResponse<String> post(@RequestBody ReservaEntity entity, HttpServletResponse response) {
-		UtilResponse<String> jsonRtaHandler;
-		try {
-			jsonRtaHandler = crearReservaHandler.exec(entity);
-		} catch (Exception e) {
-			jsonRtaHandler = new UtilResponse<>(e.getMessage());
-		}
-		return jsonRtaHandler;
+	public ComandoRespuesta<Integer> crearReserva(@RequestBody ReservaEntity reservaEntity, HttpServletResponse response) {
+		return crearReservaHandler.exec(reservaEntity);
     }
 	
 	@ApiOperation("Cancelar reserva")
 	@PutMapping("/cancelar-reserva")
-	public UtilResponse<String> cancelar(@RequestParam int id, HttpServletResponse response) {
-		UtilResponse<String> jsonRtaHandler;
-		try {
-			jsonRtaHandler = cancelarReservaHandler.exec(id);
-		} catch (Exception e) {
-			jsonRtaHandler = new UtilResponse<>(e.getMessage());
-		}
-		return jsonRtaHandler;
+	public void cancelarReserva(@RequestParam int reservaId, HttpServletResponse response) {
+	 cancelarReservaHandler.exec(reservaId);
     }
 	
 	@ApiOperation("Finalizar reserva")
 	@PutMapping("/finalizar-reserva")
-	public UtilResponse<String> finalizar(@RequestParam int id, @RequestParam int valor ,HttpServletResponse response) {
-		UtilResponse<String> jsonRtaHandler;
-		try {
-			jsonRtaHandler = finalizarReservaHandler.exec(id, valor);
-		} catch (Exception e) {
-			jsonRtaHandler = new UtilResponse<>(e.getMessage());
-		}
-		return jsonRtaHandler;
+	public  ComandoRespuesta<Integer> finalizarReserva(@RequestParam int reservaId, @RequestParam int valorIngresado ,HttpServletResponse response) {
+		return finalizarReservaHandler.exec(reservaId, valorIngresado);
     }
 	
 	@ApiOperation("Listar reservas")

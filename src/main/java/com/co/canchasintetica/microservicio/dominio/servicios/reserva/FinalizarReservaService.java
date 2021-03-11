@@ -1,15 +1,21 @@
 package com.co.canchasintetica.microservicio.dominio.servicios.reserva;
 
+
+
 import org.springframework.stereotype.Service;
 
 import com.co.canchasintetica.microservicio.dominio.entidades.Reserva;
-import com.co.canchasintetica.microservicio.dominio.entidades.ValidadorExcepcionesUtil;
+import com.co.canchasintetica.microservicio.dominio.excepcion.ValidarFinalizarReservaExcepcion;
 import com.co.canchasintetica.microservicio.dominio.entidades.Cancha;
 import com.co.canchasintetica.microservicio.dominio.repositorio.CanchaRepository;
 import com.co.canchasintetica.microservicio.dominio.repositorio.ReservaRepository;
 
 @Service
 public class FinalizarReservaService {
+	
+	private static final String VALOR_FINALIZAR_RESERVA = "El valor ingresado es inferior al valor que resta por pago";
+	private static final String ESTADO_FINALIZADA = "FINALIZADA";
+
 	
 	private ReservaRepository reservaRepository;
 	private CanchaRepository canchaRepository;
@@ -20,17 +26,26 @@ public class FinalizarReservaService {
 			this.canchaRepository = canchaRepository;
 		}
 	
-	public String finalizarReserva(int id, int valor) {
-		Reserva reserva = reservaRepository.getReservaById(id);
-		Cancha cancha = canchaRepository.getCanchaById(reserva.getCanchaId());
+	public void finalizarReserva(int reservaId, int valorIngresado) {
+		Reserva reservaFinalizar = reservaRepository.getReservaById(reservaId);
+		Cancha canchaSeleccionada = canchaRepository.getCanchaById(reservaFinalizar.getCanchaId());
 		
-		ValidadorExcepcionesUtil.validarValorRestanteReserva(reserva, cancha, valor);
+		validarValorRestanteReserva(reservaFinalizar, canchaSeleccionada, valorIngresado);
 		
-		reserva.setEstado("FINALIZADA");
-		reserva.setValorTotal(valor);
-		reservaRepository.actualizarReserva(reserva);
-		return "La reserva ha sido finalizada";
+		reservaFinalizar.setEstado(ESTADO_FINALIZADA);
+		reservaFinalizar.setValorTotal(valorIngresado);
+		reservaRepository.actualizarReserva(reservaFinalizar);
 	}
 
+	
+	public static void validarValorRestanteReserva(Reserva reservaFinalizar,
+			Cancha canchaSeleccionada, int valorIngresado) {
+		
+		int valorCancha = reservaFinalizar.obtenerValorCancha(canchaSeleccionada);
+	    int valorRestante = valorCancha - reservaFinalizar.getValorAbono();	
+		if (valorRestante > valorIngresado) {
+			throw new ValidarFinalizarReservaExcepcion(VALOR_FINALIZAR_RESERVA);
+		}
+	}
 
 }

@@ -1,59 +1,57 @@
 package com.co.canchasintetica.microservicio.dominio.entidades;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
+import com.co.canchasintetica.microservicio.dominio.excepcion.CamposVaciosExcepcion;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Reserva {
 	
 	
-	private int id;
-	private int canchaId;
+	private static final String IS_EMPTY = "";
+	private static final String CAMPOS_VACIOS = "Por favor complete todos los datos solicitados";
+	private static final Integer VALOR_HORA_MINIMA = 17;
+
+	
+	private Integer id;
+	private Integer canchaId;
 	private String nombreSolicita;
-	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private LocalDate fecha;
-	
 	private String hora;
 	private String estado;
-	private int valorAbono;
-	private int valorTotal;
+	private Integer valorAbono;
+	private Integer valorTotal;
 	
-	public Reserva() {
-		
-	}
-	
-	
-	public Reserva(int id, int canchaId, String nombreSolicita, LocalDate fecha, String hora, String estado,
-			int valorAbono, int valorTotal) {
+	public Reserva(Integer id, Integer canchaId, String nombreSolicita, LocalDate fecha, String hora, String estado,
+			Integer valorAbono, Integer valorTotal) {
 		this.id = id;
 		
-		ValidadorExcepcionesUtil.validarCampoValor(canchaId);
+		validarCampoObligatorioNumerico(canchaId);
 		this.canchaId = canchaId;
 		
-		ValidadorExcepcionesUtil.validarCamposVacios(nombreSolicita);
+		validarCampoObligatorioTexto(nombreSolicita);
 		this.nombreSolicita = nombreSolicita;
 		
-		ValidadorExcepcionesUtil.validarCamposVacios(fecha);
+		validarCampoObligatorioTexto(fecha);
 		this.fecha = fecha;
 		
-		ValidadorExcepcionesUtil.validarCamposVacios(hora);
+		validarCampoObligatorioTexto(hora);
 		this.hora = hora;
 		
-		ValidadorExcepcionesUtil.validarCamposVacios(estado);
+		validarCampoObligatorioTexto(estado);
 		this.estado = estado;
 		
-		ValidadorExcepcionesUtil.validarCampoValor(valorAbono);
+		validarCampoObligatorioNumerico(valorAbono);
 		this.valorAbono = valorAbono;
 		this.valorTotal = valorTotal;
 	}
 	
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	
@@ -90,17 +88,42 @@ public class Reserva {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	public int getValorAbono() {
+	public Integer getValorAbono() {
 		return valorAbono;
 	}
-	public void setValorAbono(int valorAbono) {
+	public void setValorAbono(Integer valorAbono) {
 		this.valorAbono = valorAbono;
 	}
-	public int getValorTotal() {
+	public Integer getValorTotal() {
 		return valorTotal;
 	}
-	public void setValorTotal(int valorTotal) {
+	public void setValorTotal(Integer valorTotal) {
 		this.valorTotal = valorTotal;
+	}
+	
+	private void validarCampoObligatorioTexto(Object valorCampo) {
+		if (valorCampo == null || valorCampo.equals(IS_EMPTY)) {
+			throw new CamposVaciosExcepcion(CAMPOS_VACIOS);
+		}
+	}
+	
+	private void validarCampoObligatorioNumerico(Integer valorCampo) {
+		if (valorCampo == null || valorCampo == 0) {
+			throw new CamposVaciosExcepcion(CAMPOS_VACIOS);
+		}
+	}
+	
+	public int obtenerValorCancha(Cancha cancha) {
+		int valorCancha = 0;
+		LocalTime time = LocalTime.parse(this.hora);
+		if (time.getHour() <= VALOR_HORA_MINIMA) {
+			valorCancha = cancha.getValorDia();
+		}
+
+		if (time.getHour() > VALOR_HORA_MINIMA) {
+			valorCancha = cancha.getValorNoche();
+		}
+		return valorCancha;
 	}
 	
 }

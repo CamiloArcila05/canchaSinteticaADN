@@ -2,11 +2,11 @@ package com.co.canchasintetica.microservicio.aplicacion.handler.reserva;
 
 import org.springframework.stereotype.Component;
 
-import com.co.canchasintetica.microservicio.aplicacion.utils.UtilResponse;
+import com.co.canchasintetica.microservicio.aplicacion.comun.handlercomun.UtilHandler;
 import com.co.canchasintetica.microservicio.dominio.servicios.reserva.CancelarReservaService;
 
 @Component
-public class CancelarReservaHandler {
+public class CancelarReservaHandler implements UtilHandler<Integer>{
 
 	private final CancelarReservaService cancelarReservaService;
 
@@ -14,8 +14,9 @@ public class CancelarReservaHandler {
 		this.cancelarReservaService = cancelarReservaService;
 	}
 
-	public UtilResponse<String> exec(int id) {
-		return new UtilResponse<>(cancelarReservaService.cancelarReserva(id));
+	@Override
+	public void  exec(Integer idReserva) {
+		cancelarReservaService.cancelarReserva(idReserva);
 	}
 	
 }

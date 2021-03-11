@@ -14,7 +14,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 public class BeanService {
 	
-	
+
 	@Bean
 	public Docket buildDocket() {
 		return new Docket(DocumentationType.SWAGGER_12)

@@ -79,12 +79,8 @@ public class CrearReservaServiceTest {
 
     	when(this.reservaRepository.crearReserva(reserva)).thenReturn(reserva);
     	this.crearReservaService = new CrearReservaService(reservaRepository, canchaRepository);
-        String respuesta = crearReservaService.crearReserva(reserva);
-
-        String msgEsperado = "La reserva del señor(a): " + NOMBRE_SOLICITA + " ha sido creada.";
-     
-        Assert.assertNotNull(respuesta);
-        Assert.assertEquals(msgEsperado, respuesta);
+    	Reserva reservaCreada = crearReservaService.crearReserva(reserva);
+        Assert.assertNotNull(reservaCreada);
     }
     
     @Test
@@ -102,12 +98,7 @@ public class CrearReservaServiceTest {
 
         	when(this.reservaRepository.crearReserva(reserva)).thenReturn(reserva);
         	this.crearReservaService = new CrearReservaService(reservaRepository, canchaRepository);
-            String respuesta = crearReservaService.crearReserva(reserva);
-
-            String msgEsperado = "La reserva del señor(a): " + NOMBRE_SOLICITA + " ha sido creada.";
-       
-            Assert.assertNotNull(respuesta);
-            Assert.assertEquals(msgEsperado, respuesta);
+        	crearReservaService.crearReserva(reserva);
 			
 		} catch (Exception e) {
 			assertEquals(VALOR_ABONO_MINIMO, e.getMessage());
@@ -130,12 +121,7 @@ public class CrearReservaServiceTest {
 
         	when(this.reservaRepository.crearReserva(reserva)).thenReturn(reserva);
         	this.crearReservaService = new CrearReservaService(reservaRepository, canchaRepository);
-            String respuesta = crearReservaService.crearReserva(reserva);
-
-            String msgEsperado = "La reserva del señor(a): " + NOMBRE_SOLICITA + " ha sido creada.";
-            
-            Assert.assertNotNull(respuesta);
-            Assert.assertEquals(msgEsperado, respuesta);
+            crearReservaService.crearReserva(reserva);
 			
 		} catch (Exception e) {
 			assertEquals(CAMPOS_VACIOS, e.getMessage());

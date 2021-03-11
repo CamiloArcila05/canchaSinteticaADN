@@ -10,8 +10,9 @@ import com.co.canchasintetica.microservicio.aplicacion.handler.reserva.ReservaEn
 @Component
 public class ReservaFactory {
 
-	public Reserva create(ReservaEntity entity) {
-		return new Reserva(entity.getId(), entity.getId_cancha(), entity.getNombreSolicita(), 
-				entity.getFecha(), entity.getHora(), entity.getEstado(), entity.getValorAbono(), entity.getValorTotal() );
+	public Reserva create(ReservaEntity reservaEntity) {
+		return new Reserva(reservaEntity.getId(), reservaEntity.getCanchaId(), reservaEntity.getNombreSolicita(), 
+				reservaEntity.getFecha(), reservaEntity.getHora(), reservaEntity.getEstado(), reservaEntity.getValorAbono(), 
+				reservaEntity.getValorTotal() );
 	}
 }

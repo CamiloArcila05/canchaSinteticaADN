@@ -7,8 +7,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class ReservaEntity {
 	
 	
-	private int id;
-	private int id_cancha;
+	private Integer id;
+	private Integer canchaId;
 	private String nombreSolicita;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
@@ -16,17 +16,14 @@ public class ReservaEntity {
 	
 	private String hora;
 	private String estado;
-	private int valorAbono;
-	private int valorTotal;
+	private Integer valorAbono;
+	private Integer valorTotal;
 	
-	public ReservaEntity() {
-		
-	}
 	
-	public ReservaEntity(int id, int id_cancha, String nombreSolicita, LocalDate fecha, String hora, String estado,
-			int valorAbono, int valorTotal) {
+	public ReservaEntity(Integer id, Integer canchaId, String nombreSolicita, LocalDate fecha, String hora, String estado,
+			Integer valorAbono, Integer valorTotal) {
 		this.id = id;
-		this.id_cancha = id_cancha;
+		this.canchaId = canchaId;
 		this.nombreSolicita = nombreSolicita;
 		this.fecha = fecha;
 		this.hora = hora;
@@ -35,20 +32,22 @@ public class ReservaEntity {
 		this.valorTotal = valorTotal;
 	}
 	
+	public ReservaEntity() {
+	}
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public int getId_cancha() {
-		return id_cancha;
+	
+	public int getCanchaId() {
+		return canchaId;
 	}
 
-	public void setId_cancha(int id_cancha) {
-		this.id_cancha = id_cancha;
+	public void setCanchaId(int canchaId) {
+		this.canchaId = canchaId;
 	}
 
 	public String getNombreSolicita() {
@@ -75,16 +74,16 @@ public class ReservaEntity {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	public int getValorAbono() {
+	public Integer getValorAbono() {
 		return valorAbono;
 	}
-	public void setValorAbono(int valorAbono) {
+	public void setValorAbono(Integer valorAbono) {
 		this.valorAbono = valorAbono;
 	}
-	public int getValorTotal() {
+	public Integer getValorTotal() {
 		return valorTotal;
 	}
-	public void setValorTotal(int valorTotal) {
+	public void setValorTotal(Integer valorTotal) {
 		this.valorTotal = valorTotal;
 	}
 

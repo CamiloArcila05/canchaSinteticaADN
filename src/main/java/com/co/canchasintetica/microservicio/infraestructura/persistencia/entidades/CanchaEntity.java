@@ -25,7 +25,7 @@ public class CanchaEntity implements Serializable {
 
 	@Id
 	@Column(name = "id", nullable = false)
-	private int id;
+	private Integer id;
 
 	@Column(name = "nombre", nullable = false)
 	private String nombre;
@@ -37,16 +37,16 @@ public class CanchaEntity implements Serializable {
 	private String estado;
 
 	@Column(name = "valor_dia")
-	private int valorDia;
+	private Integer valorDia;
 	
 	@Column(name = "valor_noche")
-	private int valorNoche;
+	private Integer valorNoche;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -74,19 +74,19 @@ public class CanchaEntity implements Serializable {
 		this.estado = estado;
 	}
 
-	public int getValorDia() {
+	public Integer getValorDia() {
 		return valorDia;
 	}
 
-	public void setValorDia(int valorDia) {
+	public void setValorDia(Integer valorDia) {
 		this.valorDia = valorDia;
 	}
 
-	public int getValorNoche() {
+	public Integer getValorNoche() {
 		return valorNoche;
 	}
 
-	public void setValorNoche(int valorNoche) {
+	public void setValorNoche(Integer valorNoche) {
 		this.valorNoche = valorNoche;
 	}
 	

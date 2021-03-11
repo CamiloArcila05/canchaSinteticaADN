@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+import com.co.canchasintetica.microservicio.aplicacion.comun.ComandoRespuesta;
 import com.co.canchasintetica.microservicio.aplicacion.handler.cancha.ActualizarCanchaHandler;
 import com.co.canchasintetica.microservicio.aplicacion.handler.cancha.CanchaEntity;
 import com.co.canchasintetica.microservicio.aplicacion.handler.cancha.CrearCanchaHandler;
 import com.co.canchasintetica.microservicio.aplicacion.handler.cancha.ListarCanchasHandler;
-import com.co.canchasintetica.microservicio.aplicacion.utils.UtilResponse;
 
 @RestController
 @RequestMapping("/cancha")
@@ -41,26 +41,14 @@ public class CanchaController {
 	
 	@ApiOperation("Registrar Cancha")
 	@PostMapping("/registrar-cancha")
-	public UtilResponse<String> post(@RequestBody CanchaEntity entity, HttpServletResponse response) {
-		UtilResponse<String> jsonRtaHandler;
-		try {
-			jsonRtaHandler = crearCanchaHandler.exec(entity);
-		} catch (Exception e) {
-			jsonRtaHandler = new UtilResponse<>(e.getMessage());
-		}
-		return jsonRtaHandler;
+	public ComandoRespuesta<Integer> crearCancha(@RequestBody CanchaEntity canchaEntity, HttpServletResponse response) {
+		return crearCanchaHandler.exec(canchaEntity);
     }
 	
 	@ApiOperation("Actualizar Cancha")
 	@PutMapping("/actualizar-cancha")
-	public UtilResponse<String> put(@RequestBody CanchaEntity entity, HttpServletResponse response) {
-		UtilResponse<String> jsonRtaHandler;
-		try {
-			jsonRtaHandler = actualizarCanchaHandler.exec(entity);
-		} catch (Exception e) {
-			jsonRtaHandler = new UtilResponse<>(e.getMessage());
-		}
-		return jsonRtaHandler;
+	public ComandoRespuesta<Integer> actualizarCancha(@RequestBody CanchaEntity canchaEntity, HttpServletResponse response) {
+		return actualizarCanchaHandler.exec(canchaEntity);
     }
 	
 	

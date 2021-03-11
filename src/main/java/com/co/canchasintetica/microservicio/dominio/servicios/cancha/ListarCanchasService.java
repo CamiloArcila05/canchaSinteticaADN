@@ -16,7 +16,7 @@ public class ListarCanchasService {
 		this.canchaRepository = canchaRepository;
 	}
 	
-	public List<CanchaEntity> listasCanchas() {
+	public List<CanchaEntity> listarCanchas() {
 		return canchaRepository.listarCanchas();
 	}
 

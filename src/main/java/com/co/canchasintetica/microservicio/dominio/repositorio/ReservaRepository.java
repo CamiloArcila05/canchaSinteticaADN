@@ -36,7 +36,7 @@ public interface ReservaRepository {
 	 * @param id
 	 * @return reserva
 	 */
-	public Reserva getReservaById(int id);
+	public Reserva getReservaById(int reservaId);
 	
 	
 	/**

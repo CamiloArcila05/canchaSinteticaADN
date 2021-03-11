@@ -17,25 +17,25 @@ public class CanchaMapper {
 	
 	
 	public Cancha toDomain(CanchaEntity entity) {
-		Cancha domain = new Cancha();
-		domain.setId(entity.getId());
-		domain.setNombre(entity.getNombre());
-		domain.setDescripcion(entity.getDescripcion());
-		domain.setEstado(entity.getEstado());
-		domain.setValorDia(entity.getValorDia());
-		domain.setValorNoche(entity.getValorNoche());
-		return domain;
+		Cancha cancha = new Cancha(
+				entity.getId(),
+				entity.getNombre(),
+				entity.getDescripcion(),
+				entity.getEstado(),
+				entity.getValorDia(),
+				entity.getValorNoche());
+		return cancha;
 	}
 
-	public CanchaEntity toEntity(Cancha domain) {
-		CanchaEntity entity = new CanchaEntity();
-		entity.setId(domain.getId());
-		entity.setNombre(domain.getNombre());
-		entity.setDescripcion(domain.getDescripcion());
-		entity.setValorDia(domain.getValorDia());
-		entity.setValorNoche(domain.getValorNoche());
-		entity.setEstado(domain.getEstado());
-		return entity;
+	public CanchaEntity toEntity(Cancha canchaDomain) {
+		CanchaEntity canchaEntity = new CanchaEntity();
+		canchaEntity.setId(canchaDomain.getId());
+		canchaEntity.setNombre(canchaDomain.getNombre());
+		canchaEntity.setDescripcion(canchaDomain.getDescripcion());
+		canchaEntity.setValorDia(canchaDomain.getValorDia());
+		canchaEntity.setValorNoche(canchaDomain.getValorNoche());
+		canchaEntity.setEstado(canchaDomain.getEstado());
+		return canchaEntity;
 	}
 
 }

@@ -14,8 +14,8 @@ public class CrearCanchaService {
 		this.canchaRepository = canchaRepository;
 	}
 	
-	public String craerCancha(Cancha cancha) {
-		return "La cancha: " + canchaRepository.crearCancha(cancha).getNombre() + " ha sido creada.";
+	public Cancha craerCancha(Cancha cancha) {
+		return canchaRepository.crearCancha(cancha);
 	}
 
 }

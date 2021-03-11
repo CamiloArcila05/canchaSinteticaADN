@@ -15,31 +15,31 @@ import com.co.canchasintetica.microservicio.infraestructura.persistencia.reposit
 public class CanchaRepositoryImpl implements CanchaRepository {
 
 	@Autowired
-	private CanchaRepositoryJpa jpa;
+	private CanchaRepositoryJpa canchaRepositoryJpa;
 
-	private static final CanchaMapper mapper = CanchaMapper.getInstance();
+	private static final CanchaMapper canchaMapper = CanchaMapper.getInstance();
 	
 	@Override
 	public Cancha crearCancha(Cancha cancha) {
-		CanchaEntity entity = mapper.toEntity(cancha);
-		return mapper.toDomain(jpa.save(entity)); 
+		CanchaEntity entity = canchaMapper.toEntity(cancha);
+		return canchaMapper.toDomain(canchaRepositoryJpa.save(entity)); 
 	}
 
 	@Override
 	public void actualizarCancha(Cancha cancha) {
-		CanchaEntity entity = mapper.toEntity(cancha);
-		jpa.save(entity);
+		CanchaEntity entity = canchaMapper.toEntity(cancha);
+		canchaRepositoryJpa.save(entity);
 	}
 
 	@Override
 	public List<com.co.canchasintetica.microservicio.aplicacion.handler.cancha.CanchaEntity> listarCanchas() {
-		return jpa.listarCanchas();
+		return canchaRepositoryJpa.listarCanchas();
 	}
 
 	@Override
-	public Cancha getCanchaById(int id) {
-		CanchaEntity entity = jpa.getById(id);
-		return mapper.toDomain(entity);
+	public Cancha getCanchaById(int canchaId) {
+		CanchaEntity entity = canchaRepositoryJpa.getById(canchaId);
+		return canchaMapper.toDomain(entity);
 	}
 
 

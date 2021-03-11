@@ -2,18 +2,15 @@ package com.co.canchasintetica.microservicio.aplicacion.handler.cancha;
 
 public class CanchaEntity {
 	
-	private int id;
+	private Integer id;
 	private String nombre;
 	private String descripcion;
 	private String estado;
-	private int valorDia;
-	private int valorNoche;
+	private Integer valorDia;
+	private Integer valorNoche;
 	
-	public CanchaEntity() {
-		
-	}
-	
-	public CanchaEntity(int id, String nombre, String descripcion, String estado, int valorDia, int valorNoche) {
+
+	public CanchaEntity(Integer id, String nombre, String descripcion, String estado, Integer valorDia, Integer valorNoche) {
 		this.id = id;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -21,12 +18,15 @@ public class CanchaEntity {
 		this.valorDia = valorDia;
 		this.valorNoche = valorNoche;
 	}
+	
+	public CanchaEntity() {
+	}
 
 	public int getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -58,7 +58,7 @@ public class CanchaEntity {
 		return valorDia;
 	}
 
-	public void setValorDia(int valorDia) {
+	public void setValorDia(Integer valorDia) {
 		this.valorDia = valorDia;
 	}
 
@@ -66,7 +66,7 @@ public class CanchaEntity {
 		return valorNoche;
 	}
 
-	public void setValorNoche(int valorNoche) {
+	public void setValorNoche(Integer valorNoche) {
 		this.valorNoche = valorNoche;
 	}
 

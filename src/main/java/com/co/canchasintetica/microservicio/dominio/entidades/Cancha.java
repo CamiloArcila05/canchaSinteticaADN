@@ -1,36 +1,37 @@
 package com.co.canchasintetica.microservicio.dominio.entidades;
 
+import com.co.canchasintetica.microservicio.dominio.excepcion.CamposVaciosExcepcion;
 
 public class Cancha {
 	
-	private int id;
+	private static final String IS_EMPTY = "";
+	private static final String CAMPOS_VACIOS = "Por favor complete todos los datos solicitados";
+
+	
+	private Integer id;
 	private String nombre;
 	private String descripcion;
 	private String estado;
-	private int valorDia;
-	private int valorNoche;
+	private Integer valorDia;
+	private Integer valorNoche;
 	
-	public Cancha() {
-		
-	}
-	
-	public Cancha(int id, String nombre, String descrip, String estado, int valorDia, int valorNoche) {
+	public Cancha(Integer id, String nombre, String descrip, String estado, Integer valorDia, Integer valorNoche) {
 		
 		this.id = id;
 		
-		ValidadorExcepcionesUtil.validarCamposVacios(nombre);
+		validarCampoObligatorioTexto(nombre);
 		this.nombre = nombre;
 		
-		ValidadorExcepcionesUtil.validarCamposVacios(descrip);
+		validarCampoObligatorioTexto(descrip);
 		this.descripcion = descrip;
 		
-		ValidadorExcepcionesUtil.validarCamposVacios(estado);
+		validarCampoObligatorioTexto(estado);
 		this.estado = estado;
 		
-		ValidadorExcepcionesUtil.validarCampoValor(valorDia);
+		validarCampoObligatorioNumerico(valorDia);
 		this.valorDia = valorDia;
 		
-		ValidadorExcepcionesUtil.validarCampoValor(valorNoche);
+		validarCampoObligatorioNumerico(valorNoche);
 		this.valorNoche = valorNoche;
 	}
 
@@ -38,7 +39,7 @@ public class Cancha {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -66,19 +67,19 @@ public class Cancha {
 		this.estado = estado;
 	}
 
-	public int getValorDia() {
+	public Integer getValorDia() {
 		return valorDia;
 	}
 
-	public void setValorDia(int valorDia) {
+	public void setValorDia(Integer valorDia) {
 		this.valorDia = valorDia;
 	}
 
-	public int getValorNoche() {
+	public Integer getValorNoche() {
 		return valorNoche;
 	}
 
-	public void setValorNoche(int valorNoche) {
+	public void setValorNoche(Integer valorNoche) {
 		this.valorNoche = valorNoche;
 	}
 
@@ -86,6 +87,18 @@ public class Cancha {
 	public String toString() {
 		return "Cancha [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", estado=" + estado
 				+ ", valorDia=" + valorDia + ", valorNoche=" + valorNoche + "]";
+	}
+	
+	private void validarCampoObligatorioTexto(String valorCampo) {
+		if (valorCampo == null || valorCampo.equals(IS_EMPTY)) {
+			throw new CamposVaciosExcepcion(CAMPOS_VACIOS);
+		}
+	}
+	
+	private void validarCampoObligatorioNumerico(Integer valorCampo) {
+		if (valorCampo == null || valorCampo == 0) {
+			throw new CamposVaciosExcepcion(CAMPOS_VACIOS);
+		}
 	}
 	
 }

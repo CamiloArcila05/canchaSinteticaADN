@@ -8,17 +8,18 @@ import com.co.canchasintetica.microservicio.dominio.repositorio.ReservaRepositor
 @Service
 public class CancelarReservaService {
 	
+	private static final String ESTADO_CANCALADA = "CANCELADA";
+	
 private ReservaRepository reservaRepository;
 	
 	public CancelarReservaService(ReservaRepository reservaRepository) {
 		this.reservaRepository = reservaRepository;
 	}
 	
-	public String cancelarReserva(int id) {
-		Reserva reserva = reservaRepository.getReservaById(id);
-		reserva.setEstado("CANCELADA");
-		reservaRepository.actualizarReserva(reserva);
-		return "La reserva ha sido cancelada";
+	public void cancelarReserva(int reservaId) {
+		Reserva reservaCancelar = reservaRepository.getReservaById(reservaId);
+		reservaCancelar.setEstado(ESTADO_CANCALADA);
+		reservaRepository.actualizarReserva(reservaCancelar);
 	}
 
 }

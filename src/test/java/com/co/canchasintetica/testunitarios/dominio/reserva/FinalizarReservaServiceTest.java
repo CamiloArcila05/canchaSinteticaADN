@@ -41,9 +41,7 @@ public class FinalizarReservaServiceTest {
 		private static final int VALOR_DIA = 50000;
 		private static final int VALOR_NOCHE = 60000;
 		
-		
-	//Mensajes
-		private static final String MENSAJE_OK = "La reserva ha sido finalizada";
+	
 		private static final String MENSAJE_FAIL = "El valor ingresado es inferior al valor que resta por pago";
 
 	
@@ -76,12 +74,9 @@ public class FinalizarReservaServiceTest {
 	        		LocalDate.parse(FECHA), HORA, VALOR_ABONO, VALOR_TOTAL, ESTADO);
 	    	when(this.reservaRepository.getReservaById(1)).thenReturn(reserva);
 	    	
-	    	
 	    	this.finalizarReservaService = new FinalizarReservaService(reservaRepository, canchaRepository);
-	    	String respuesta = finalizarReservaService.finalizarReserva(1, VALOR_SUCCESS);
+	    	finalizarReservaService.finalizarReserva(1, VALOR_SUCCESS);
 	    	
-	        // Then
-	        Assert.assertEquals(MENSAJE_OK, respuesta);
 	    }
 	 
 	 
@@ -100,10 +95,7 @@ public class FinalizarReservaServiceTest {
 	    	
 	    	
 	    	this.finalizarReservaService = new FinalizarReservaService(reservaRepository, canchaRepository);
-	    	String respuesta = finalizarReservaService.finalizarReserva(1, VALOR_FAIL);
-	    	
-	        // Then
-	        Assert.assertEquals(MENSAJE_OK, respuesta);
+	    	finalizarReservaService.finalizarReserva(1, VALOR_FAIL);
 	        
 		 } catch (Exception e) {
 		        Assert.assertEquals(MENSAJE_FAIL, e.getMessage());

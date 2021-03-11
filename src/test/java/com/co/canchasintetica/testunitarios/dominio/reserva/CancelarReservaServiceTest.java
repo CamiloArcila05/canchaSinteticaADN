@@ -6,7 +6,6 @@ import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -30,10 +29,6 @@ public class CancelarReservaServiceTest {
 	private static final int VALOR_TOTAL = 0;
 	
 	
-	//Mensajes
-		private static final String MENSAJE_OK = "La reserva ha sido cancelada";
-
-	
 	
 	@BeforeEach
 	public void setUp() {
@@ -50,7 +45,7 @@ public class CancelarReservaServiceTest {
 	}
 	
 	 @Test
-	    public void finalizarReservaExitoso() {
+	    public void cancelarReservaExitoso() {
 	        // Given
 	    	
 			
@@ -58,12 +53,9 @@ public class CancelarReservaServiceTest {
 	        		LocalDate.parse(FECHA), HORA, VALOR_ABONO, VALOR_TOTAL, ESTADO);
 	    	when(this.reservaRepository.getReservaById(1)).thenReturn(reserva);
 	    	
-	    	
 	    	this.cancelarReservaService = new CancelarReservaService(reservaRepository);
-	    	String respuesta = cancelarReservaService.cancelarReserva(1);
+	    	cancelarReservaService.cancelarReserva(1);
 	    	
-	        // Then
-	        Assert.assertEquals(MENSAJE_OK, respuesta);
 	    }
 	 
 	 

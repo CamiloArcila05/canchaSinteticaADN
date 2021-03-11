@@ -9,8 +9,9 @@ import com.co.canchasintetica.microservicio.aplicacion.handler.cancha.CanchaEnti
 @Component
 public class CanchaFactory {
 
-	public Cancha create(CanchaEntity entity) {
-		return new Cancha(entity.getId(), entity.getNombre(), 
-				entity.getDescripcion(), entity.getEstado(), entity.getValorDia(), entity.getValorNoche());
+	public Cancha create(CanchaEntity canchaEntity) {
+		return new Cancha(canchaEntity.getId(), canchaEntity.getNombre(), 
+				canchaEntity.getDescripcion(), canchaEntity.getEstado(), canchaEntity.getValorDia(), 
+				canchaEntity.getValorNoche());
 	}
 }

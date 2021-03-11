@@ -1,15 +1,22 @@
 package com.co.canchasintetica.microservicio.dominio.servicios.reserva;
 
+
+
 import org.springframework.stereotype.Service;
 
 import com.co.canchasintetica.microservicio.dominio.entidades.Reserva;
 import com.co.canchasintetica.microservicio.dominio.entidades.Cancha;
-import com.co.canchasintetica.microservicio.dominio.entidades.ValidadorExcepcionesUtil;
+import com.co.canchasintetica.microservicio.dominio.excepcion.ReservaUnicaExcepcion;
+import com.co.canchasintetica.microservicio.dominio.excepcion.ValidarFinalizarReservaExcepcion;
 import com.co.canchasintetica.microservicio.dominio.repositorio.CanchaRepository;
 import com.co.canchasintetica.microservicio.dominio.repositorio.ReservaRepository;
 
 @Service
 public class CrearReservaService {
+	
+	private static final String RESERVA_UNICA = "Ya existe una reserva en esa fecha y en esa hora para esta cancha";
+	private static final String VALOR_ABONO_MINIMO = "El valor del abono debe superar el 10% del valor del alquier de la cancha";
+	private static final float PORCENTAJE_MINIMO_ABONO = 0.10f;
 	
 private ReservaRepository reservaRepository;
 private CanchaRepository canchaRepository;
@@ -20,17 +27,31 @@ private CanchaRepository canchaRepository;
 		this.canchaRepository = canchaRepository;
 	}
 	
-	public String crearReserva(Reserva reserva) {
+	public Reserva crearReserva(Reserva reserva) {
 	
 		Cancha cancha = canchaRepository.getCanchaById(reserva.getCanchaId());
-		Reserva reservaAux = reservaRepository.getReservaByCanchaIdAndFechaAndHoraAndEstado(
+		Reserva reservaAnteriror = reservaRepository.getReservaByCanchaIdAndFechaAndHoraAndEstado(
 				reserva.getCanchaId(), reserva.getFecha(), reserva.getHora(), reserva.getEstado());
-		ValidadorExcepcionesUtil.validarUnicaReserva(reservaAux);
-		ValidadorExcepcionesUtil.validarValorAbono(reserva, cancha);
+		
+		
+		validarUnicaReserva(reservaAnteriror);
+		validarValorAbono(reserva, cancha);
 	
-		return "La reserva del señor(a): " 
-		+ reservaRepository.crearReserva(reserva).getNombreSolicita() 
-				+ " ha sido creada." ;
+		return reservaRepository.crearReserva(reserva);
 	}
-
+	
+	
+	public static void validarUnicaReserva(Reserva reservaAnteriror) {
+		if (reservaAnteriror != null) {
+			throw new ReservaUnicaExcepcion(RESERVA_UNICA);
+		}
+	}
+	
+	public static void validarValorAbono(Reserva reserva, Cancha cancha) {
+		int porcentajeAbonoMinimo = Math.round(reserva.obtenerValorCancha(cancha) * PORCENTAJE_MINIMO_ABONO);
+		if (reserva.getValorAbono() < porcentajeAbonoMinimo) {
+			throw new ValidarFinalizarReservaExcepcion(VALOR_ABONO_MINIMO);
+		}
+	}
+	
 }

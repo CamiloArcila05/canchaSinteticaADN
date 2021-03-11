@@ -35,6 +35,6 @@ public interface CanchaRepository {
 	 * Método que retorna una cancha en base a un id
 	 * @return cancha registrada
 	 */
-	public Cancha getCanchaById(int id);
+	public Cancha getCanchaById(int canchaId);
 
 }

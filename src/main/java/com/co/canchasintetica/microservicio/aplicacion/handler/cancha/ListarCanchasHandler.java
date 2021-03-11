@@ -16,7 +16,7 @@ public class ListarCanchasHandler {
 	}
 
 	public List<CanchaEntity> exec() {
-		return listarCanchasService.listasCanchas();
+		return listarCanchasService.listarCanchas();
 	}
 
 }
