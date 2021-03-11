@@ -24,7 +24,9 @@ public class ReservaRepositoryImpl implements ReservaRepository {
 	@Autowired
 	private CanchaRepositoryJpa canchaRepositoryJpa;
 
+	
 	private static final ReservaMapper reservaMapper = ReservaMapper.getInstance();
+
 	
 
 	@Override

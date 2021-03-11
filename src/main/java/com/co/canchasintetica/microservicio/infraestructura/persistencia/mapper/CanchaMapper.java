@@ -2,19 +2,19 @@ package com.co.canchasintetica.microservicio.infraestructura.persistencia.mapper
 
 import com.co.canchasintetica.microservicio.dominio.entidades.Cancha;
 import com.co.canchasintetica.microservicio.infraestructura.persistencia.entidades.CanchaEntity;
+import com.co.servicios.arrendamientos.infraestructura.persistencia.mapper.PagoMapper;
 
 
 public class CanchaMapper {
 	
 	public CanchaMapper() {
 	}
-
-	public static final CanchaMapper INSTANCE = new CanchaMapper();
+	
+	private static final CanchaMapper INSTANCE = new CanchaMapper();
 
 	public static CanchaMapper getInstance() {
 		return INSTANCE;
 	}
-	
 	
 	public Cancha toDomain(CanchaEntity entity) {
 		return  new Cancha(

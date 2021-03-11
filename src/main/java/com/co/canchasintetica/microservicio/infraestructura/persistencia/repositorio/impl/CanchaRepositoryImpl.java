@@ -18,6 +18,7 @@ public class CanchaRepositoryImpl implements CanchaRepository {
 	private CanchaRepositoryJpa canchaRepositoryJpa;
 
 	private static final CanchaMapper canchaMapper = CanchaMapper.getInstance();
+
 	
 	@Override
 	public Cancha crearCancha(Cancha cancha) {
