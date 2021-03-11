@@ -6,7 +6,7 @@ import com.co.canchasintetica.microservicio.infraestructura.persistencia.entidad
 
 public class CanchaMapper {
 	
-	private CanchaMapper() {
+	public CanchaMapper() {
 	}
 
 	public static final CanchaMapper INSTANCE = new CanchaMapper();

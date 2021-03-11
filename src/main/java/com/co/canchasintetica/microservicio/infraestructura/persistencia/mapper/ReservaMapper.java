@@ -9,7 +9,7 @@ import com.co.canchasintetica.microservicio.infraestructura.persistencia.entidad
 public class ReservaMapper {
 	
 	
-	private ReservaMapper() {
+	public ReservaMapper() {
 	}
 
 	public static final ReservaMapper INSTANCE = new ReservaMapper();
