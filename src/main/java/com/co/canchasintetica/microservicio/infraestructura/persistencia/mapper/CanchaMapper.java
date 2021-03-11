@@ -9,7 +9,7 @@ public class CanchaMapper {
 	private CanchaMapper() {
 	}
 
-	private static final CanchaMapper INSTANCE = new CanchaMapper();
+	public static final CanchaMapper INSTANCE = new CanchaMapper();
 
 	public static CanchaMapper getInstance() {
 		return INSTANCE;
@@ -17,14 +17,13 @@ public class CanchaMapper {
 	
 	
 	public Cancha toDomain(CanchaEntity entity) {
-		Cancha cancha = new Cancha(
+		return  new Cancha(
 				entity.getId(),
 				entity.getNombre(),
 				entity.getDescripcion(),
 				entity.getEstado(),
 				entity.getValorDia(),
 				entity.getValorNoche());
-		return cancha;
 	}
 
 	public CanchaEntity toEntity(Cancha canchaDomain) {

@@ -12,7 +12,7 @@ public class ReservaMapper {
 	private ReservaMapper() {
 	}
 
-	private static final ReservaMapper INSTANCE = new ReservaMapper();
+	public static final ReservaMapper INSTANCE = new ReservaMapper();
 
 	public static ReservaMapper getInstance() {
 		return INSTANCE;
@@ -20,7 +20,7 @@ public class ReservaMapper {
 	
 	
 	public Reserva toDomain(ReservaEntity reservaEntity) {
-		Reserva reservaDomain = new Reserva(
+		return new Reserva(
 				reservaEntity.getId(),
 				reservaEntity.getCanchaId().getId(),
 				reservaEntity.getNombreSolicita(),
@@ -29,12 +29,10 @@ public class ReservaMapper {
 				reservaEntity.getEstado(),
 				reservaEntity.getValorAbono(),
 				reservaEntity.getValorTotal());
-		return reservaDomain;
 	}
 	
 	public com.co.canchasintetica.microservicio.aplicacion.handler.reserva.ReservaEntity toReservaEntityResponse(ReservaEntity reservEntity) {
-		com.co.canchasintetica.microservicio.aplicacion.handler.reserva.ReservaEntity reservaEntityInfraestructura 
-		= new com.co.canchasintetica.microservicio.aplicacion.handler.reserva.ReservaEntity(
+		return new com.co.canchasintetica.microservicio.aplicacion.handler.reserva.ReservaEntity(
 				reservEntity.getId(),
 				reservEntity.getCanchaId().getId(),
 				reservEntity.getNombreSolicita(),
@@ -43,7 +41,6 @@ public class ReservaMapper {
 				reservEntity.getEstado(),
 				reservEntity.getValorAbono(),
 				reservEntity.getValorTotal());
-		return reservaEntityInfraestructura;
 	}
 
 	public ReservaEntity toEntity(Reserva reservaDoamin, CanchaEntity canchaEntity) {
