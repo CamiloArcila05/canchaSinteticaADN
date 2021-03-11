@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -26,15 +28,16 @@ public class ReservaEntity {
 
 	@Id
 	@Column(name = "id", nullable = false)
-	private int id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
 
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "id_cancha")
-	private CanchaEntity id_cancha;
+	private CanchaEntity canchaId;
 	
 	@Column(name = "nombre_solicita", nullable = false)
-	private String nombre_solicita ;
+	private String nombreSolicita ;
 
 	@Column(name = "fecha")
 	private LocalDate fecha;
@@ -46,27 +49,18 @@ public class ReservaEntity {
 	private String estado;
 
 	@Column(name = "valor_abono")
-	private int valor_abono;
+	private Integer valorAbono;
 	
 	@Column(name = "valor_total")
-	private int valor_total;
+	private Integer valorTotal;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public CanchaEntity getId_cancha() {
-		return id_cancha;
-	}
-
-	public void setId_cancha(CanchaEntity id_cancha) {
-		this.id_cancha = id_cancha;
-	}
-
 
 	public LocalDate getFecha() {
 		return fecha;
@@ -92,30 +86,37 @@ public class ReservaEntity {
 		this.estado = estado;
 	}
 
-	public String getNombre_solicita() {
-		return nombre_solicita;
+	public CanchaEntity getCanchaId() {
+		return canchaId;
 	}
 
-	public void setNombre_solicita(String nombre_solicita) {
-		this.nombre_solicita = nombre_solicita;
+	public void setCanchaId(CanchaEntity canchaId) {
+		this.canchaId = canchaId;
 	}
 
-	public int getValor_abono() {
-		return valor_abono;
+	public String getNombreSolicita() {
+		return nombreSolicita;
 	}
 
-	public void setValor_abono(int valor_abono) {
-		this.valor_abono = valor_abono;
+	public void setNombreSolicita(String nombreSolicita) {
+		this.nombreSolicita = nombreSolicita;
 	}
 
-	public int getValor_total() {
-		return valor_total;
+	public Integer getValorAbono() {
+		return valorAbono;
 	}
 
-	public void setValor_total(int valor_total) {
-		this.valor_total = valor_total;
+	public void setValorAbono(Integer valorAbono) {
+		this.valorAbono = valorAbono;
+	}
+
+	public Integer getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(Integer valorTotal) {
+		this.valorTotal = valorTotal;
 	}
 
 	
-
 }
