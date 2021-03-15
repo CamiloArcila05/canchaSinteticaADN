@@ -15,7 +15,7 @@ import com.co.canchasintetica.microservicio.dominio.repositorio.ReservaRepositor
 public class CrearReservaService {
 	
 	private static final String RESERVA_UNICA = "Ya existe una reserva en esa fecha y en esa hora para esta cancha";
-	private static final String VALOR_ABONO_MINIMO = "El valor del abono debe superar el 10% del valor del alquier de la cancha";
+	private static final String VALOR_ABONO_MINIMO = "El valor del abono debe superar el 10% del valor de alquier de la cancha";
 	private static final float PORCENTAJE_MINIMO_ABONO = 0.10f;
 	
 private ReservaRepository reservaRepository;

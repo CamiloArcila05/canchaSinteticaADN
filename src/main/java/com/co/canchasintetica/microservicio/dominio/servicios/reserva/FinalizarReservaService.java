@@ -33,7 +33,7 @@ public class FinalizarReservaService {
 		validarValorRestanteReserva(reservaFinalizar, canchaSeleccionada, valorIngresado);
 		
 		reservaFinalizar.setEstado(ESTADO_FINALIZADA);
-		reservaFinalizar.setValorTotal(valorIngresado);
+		reservaFinalizar.setValorTotal(valorIngresado + reservaFinalizar.getValorAbono());
 		reservaRepository.actualizarReserva(reservaFinalizar);
 	}
 

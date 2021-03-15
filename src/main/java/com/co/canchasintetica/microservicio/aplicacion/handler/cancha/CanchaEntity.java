@@ -1,5 +1,6 @@
 package com.co.canchasintetica.microservicio.aplicacion.handler.cancha;
 
+
 public class CanchaEntity {
 	
 	private Integer id;
@@ -22,7 +23,7 @@ public class CanchaEntity {
 	public CanchaEntity() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
