@@ -43,7 +43,7 @@ public class CrearReservaServiceTest {
 		
 		
 	//Mensajes
-		private static final String VALOR_ABONO_MINIMO = "El valor del abono debe superar el 10% del valor del alquier de la cancha";
+		private static final String VALOR_ABONO_MINIMO = "El valor del abono debe superar el 10% del valor de alquier de la cancha";
 		private static final String CAMPOS_VACIOS = "Por favor complete todos los datos solicitados";
 		private static final String RESERVA_UNICA = "Ya existe una reserva en esa fecha y en esa hora para esta cancha";
 	
