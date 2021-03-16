@@ -40,7 +40,7 @@ public class ReservaRepositoryImpl implements ReservaRepository {
 	public List<com.co.canchasintetica.microservicio.aplicacion.handler.reserva.ReservaEntity> listarReservas() {
 		List<ReservaEntity> list = reservaRepositoryJpa.getAll();
 		List<com.co.canchasintetica.microservicio.aplicacion.handler.reserva.ReservaEntity> result
-		= new ArrayList<com.co.canchasintetica.microservicio.aplicacion.handler.reserva.ReservaEntity>();
+		= new ArrayList<>();
 		for (ReservaEntity entity: list) {
 			result.add(reservaMapper.toReservaEntityResponse(entity));
 		}

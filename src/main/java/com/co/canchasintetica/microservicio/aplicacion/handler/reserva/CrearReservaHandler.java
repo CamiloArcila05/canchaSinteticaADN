@@ -21,7 +21,7 @@ public class CrearReservaHandler implements UtilHandlerResponse<ReservaEntity, C
 
 	public ComandoRespuesta<Integer> exec(ReservaEntity reservaEntity) {
 		Reserva reserva = this.reservaFactory.create(reservaEntity);
-		return new ComandoRespuesta<Integer>(crearReservaService.crearReserva(reserva).getId());
+		return new ComandoRespuesta<>(crearReservaService.crearReserva(reserva).getId());
 	}
 	
 }

@@ -1,0 +1,1 @@
+INSERT INTO cancha(nombre, descripcion, estado, valor_dia, valor_noche) VALUES ('Cancha Prueba I', 'Cancha de prueba Integracion', 'ACTIVO', 50000, 60000)
