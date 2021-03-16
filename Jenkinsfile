@@ -44,7 +44,7 @@ pipeline {
     stage('Clean') {
       steps{
         echo "------------>Clean<------------"
-        sh './gradlew --b ./build.gradle clean compileJava'
+        sh './gradlew --b ./build.gradle clean'
       }
     }
  
@@ -80,6 +80,7 @@ sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallat
     }
     success {
       echo 'This will run only if successful'
+      junit '**/build/test-results/test/*.xml'
     }
     failure {
       echo 'This will run only if failed'
