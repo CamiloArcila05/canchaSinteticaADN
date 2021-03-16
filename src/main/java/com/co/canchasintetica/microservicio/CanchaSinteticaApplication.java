@@ -8,5 +8,4 @@ public class CanchaSinteticaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CanchaSinteticaApplication.class, args);
 	}
-
 }
